@@ -503,7 +503,7 @@ openByGet();
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="300" referrerpolicy="strict-origin-when-cross-origin" src="//www.youtube.com/embed/xKVnkcOxnuY" title="國立虎尾科技大學機械設計工程系 - 電腦輔助設計與實習 - w16_exam1: 41223235" width="400"></iframe></p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="300" referrerpolicy="strict-origin-when-cross-origin" src="//www.youtube.com/embed/GqAFaM7XWa0" title="國立虎尾科技大學機械設計工程系 - 電腦輔助設計與實習 - w16_exam1: 41223235 組合" width="400"></iframe></p>
 <script src="/static/jsc3d.js" type="text/javascript"></script>
-<div id="models"><canvas height="300" id="cv1" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv2" style="border: 1px solid;" width="400"></canvas> <!-- 可以添加更多的 canvas --></div>
+<div id="models"><canvas height="300" id="cv1" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv2" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv3" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv4" style="border: 1px solid;" width="400"></canvas> <!-- 可以添加更多的 canvas --></div>
 <div style="width: 400px; height: 70px; border: 1px solid;">Model Color:<input id="mdlClr" onchange="changeOption('ModelColor',this.value)" style="margin-right: 50px;" type="color" value="#00ff40"/> Back Color1:<input id="bckClr1" onchange="changeOption('BackgroundColor1',this.value)" style="margin-right: 50px;" type="color"/> Back Color2:<input id="bckClr2" onchange="changeOption('BackgroundColor2',this.value)" type="color"/><br/> Render Mode:<select id="render" onchange="changeOption('RenderMode',this.value)">
 <option>Flat</option>
 <option>Point</option>
@@ -563,8 +563,10 @@ function openByUrl(){
 
 function openByGet(){
     var urls = [
-        "https://s104.cycu.org/~pj2023/cad2024_part_ex1_solvespace.stl",
-        "https://s104.cycu.org/~scrum1/41223199_part99.stl"
+        "https://s104.cycu.org/~41223235/w16_01.stl",
+        "https://s104.cycu.org/~41223235/w16_02.stl",
+        "https://s104.cycu.org/~41223235/w16_03.stl",
+        "https://s104.cycu.org/~41223235/w16_exam04.stl"
     ];
     var opt = getOptions();
     urls.forEach((url, index) => {
@@ -574,7 +576,10 @@ function openByGet(){
 }
 
 openByGet();
-</script><h1>HW3</h1>
+</script>
+<h3>w16_exam2</h3>
+<h3>w16_exam3</h3>
+<h1>HW3</h1>
 <p>Homework 3 (20%):</p>
 <p style="padding-left: 30px;">建立 <a href="https://mde.tw/cad2024/content/BonW.html">Balance on Wheels</a> 控制系統設計模擬場景</p>
 <p style="padding-left: 30px;"><a href="https://github.com/mdecycu/Balance_On_Wheels">https://github.com/mdecycu/Balance_On_Wheels</a></p>
