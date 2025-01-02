@@ -57,12 +57,91 @@ http_server.serve_forever()</pre>
 <p>零件考試題目以 NX2312 繪圖操作過程影片如下:</p>
 <p style="padding-left: 30px;">請將操作影片嵌入 ......</p>
 <p style="padding-left: 30px;">所完成的零件檔案下載</p>
+<h3>w10</h3>
+<p><span>題目一 : </span></p>
+<ol></ol>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="290" referrerpolicy="strict-origin-when-cross-origin" src="//www.youtube.com/embed/iKMG1M23hYc" title="國立虎尾科技大學機械設計工程系   電腦輔助設計與實習   題目一  41223235" width="400"></iframe></p>
+<p><span>題目三 :</span></p>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="290" referrerpolicy="strict-origin-when-cross-origin" src="//www.youtube.com/embed/KxcMOLfEQAY" title="國立虎尾科技大學機械設計工程系 - 電腦輔助設計與實習 - 題目三: 41223235" width="400"></iframe></p>
+<p>stl檔:</p>
+<script src="/static/jsc3d.js" type="text/javascript"></script>
+<div id="models"><canvas height="300" id="cv1" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv2" style="border: 1px solid;" width="400"></canvas> <!-- 可以添加更多的 canvas --></div>
+<div style="width: 400px; height: 70px; border: 1px solid;">Model Color:<input id="mdlClr" onchange="changeOption('ModelColor',this.value)" style="margin-right: 50px;" type="color" value="#00ff40"/> Back Color1:<input id="bckClr1" onchange="changeOption('BackgroundColor1',this.value)" style="margin-right: 50px;" type="color"/> Back Color2:<input id="bckClr2" onchange="changeOption('BackgroundColor2',this.value)" type="color"/><br/> Render Mode:<select id="render" onchange="changeOption('RenderMode',this.value)">
+<option>Flat</option>
+<option>Point</option>
+<option>Wireframe</option>
+<option>Smooth</option>
+</select>Definition:<select id="defini" onchange="changeOption('Definition',this.value)">
+<option>Standard</option>
+<option>low</option>
+<option>high</option>
+</select></div>
+<script type="text/javascript">
+var viewers = [];
+
+function getOptions(){
+    var mc = document.getElementById("mdlClr").value;
+    var bc1 = document.getElementById("bckClr1").value;
+    var bc2 = document.getElementById("bckClr2").value;
+    var ren = document.getElementById("render").value;
+    var def = document.getElementById("defini").value;
+    return {ModelColor: mc, BackgroundColor1: bc1, BackgroundColor2: bc2, RenderMode: ren, Definition: def};
+}
+
+function readSTLfile(opt, canvasId){
+    var canvas = document.getElementById(canvasId);
+    var viewer = new JSC3D.Viewer(canvas);
+    viewer.setParameter('SceneUrl', opt.SceneUrl);
+    viewer.setParameter('InitRotationX', 0);
+    viewer.setParameter('InitRotationY', 0);
+    viewer.setParameter('InitRotationZ', 0);
+    viewer.setParameter('ModelColor', opt.ModelColor);
+    viewer.setParameter('BackgroundColor1', opt.BackgroundColor1);
+    viewer.setParameter('BackgroundColor2', opt.BackgroundColor2);
+    viewer.setParameter('RenderMode', opt.RenderMode);
+    viewer.setParameter('Definition', opt.Definition);
+    viewer.init();
+    viewer.update();
+    viewers.push(viewer); // 保存 viewer 實例
+}
+
+function changeOption(strOpt,strValue){
+    console.log("change " + strOpt + " to " + strValue);
+    viewers.forEach(viewer => {
+        viewer.setParameter(strOpt, strValue);
+        viewer.init();
+        viewer.update();
+    });
+}
+
+function openByUrl(){
+    var url = document.getElementById("url").value;
+    var opt = getOptions();
+    opt.SceneUrl = url;
+    // 可以添加更多的 STL URL
+    readSTLfile(opt, 'cv1'); // 為每個 canvas 調用
+    readSTLfile(opt, 'cv2'); // 第二個 canvas
+}
+
+function openByGet(){
+    var urls = [
+        "https://s104.cycu.org/~41223235/98.stl",
+        "https://s104.cycu.org/~41223235/99.stl"
+    ];
+    var opt = getOptions();
+    urls.forEach((url, index) => {
+        opt.SceneUrl = url;
+        readSTLfile(opt, 'cv' + (index + 1)); // 動態生成 canvas ID
+    });
+}
+
+openByGet();
+</script>
+<p></p>
 <h2>w3</h2>
-<hr/>
 <p>set-NX <span>,</span>近端打開NX<span>,主要是需要更改位置,<span style="background-color: #00ffff;">140.130.17.37</span></span></p>
 <p>操作如下:</p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="225" referrerpolicy="strict-origin-when-cross-origin" src="//www.youtube.com/embed/pWzC494jzAA" title="國立虎尾科技大學機械設計工程系 - 電腦輔助設計與實習 - 利用近端開啟NX" width="400"></iframe></p>
-<hr/>
 <p></p>
 <h2>w7</h2>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/2NtMEjDS7Zg?si=pbSBmhtAPvwVvfza" title="YouTube video player" width="560"></iframe></p>
@@ -198,87 +277,6 @@ function openByGet(){
 
 openByGet();
 </script>
-<h2>w10</h2>
-<p><span>題目一 : </span></p>
-<ol></ol>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="290" referrerpolicy="strict-origin-when-cross-origin" src="//www.youtube.com/embed/iKMG1M23hYc" title="國立虎尾科技大學機械設計工程系   電腦輔助設計與實習   題目一  41223235" width="400"></iframe></p>
-<p><span>題目三 :</span></p>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="290" referrerpolicy="strict-origin-when-cross-origin" src="//www.youtube.com/embed/KxcMOLfEQAY" title="國立虎尾科技大學機械設計工程系 - 電腦輔助設計與實習 - 題目三: 41223235" width="400"></iframe></p>
-<p>stl檔:</p>
-<script src="/static/jsc3d.js" type="text/javascript"></script>
-<div id="models"><canvas height="300" id="cv1" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv2" style="border: 1px solid;" width="400"></canvas> <!-- 可以添加更多的 canvas --></div>
-<div style="width: 400px; height: 70px; border: 1px solid;">Model Color:<input id="mdlClr" onchange="changeOption('ModelColor',this.value)" style="margin-right: 50px;" type="color" value="#00ff40"/> Back Color1:<input id="bckClr1" onchange="changeOption('BackgroundColor1',this.value)" style="margin-right: 50px;" type="color"/> Back Color2:<input id="bckClr2" onchange="changeOption('BackgroundColor2',this.value)" type="color"/><br/> Render Mode:<select id="render" onchange="changeOption('RenderMode',this.value)">
-<option>Flat</option>
-<option>Point</option>
-<option>Wireframe</option>
-<option>Smooth</option>
-</select>Definition:<select id="defini" onchange="changeOption('Definition',this.value)">
-<option>Standard</option>
-<option>low</option>
-<option>high</option>
-</select></div>
-<script type="text/javascript">
-var viewers = [];
-
-function getOptions(){
-    var mc = document.getElementById("mdlClr").value;
-    var bc1 = document.getElementById("bckClr1").value;
-    var bc2 = document.getElementById("bckClr2").value;
-    var ren = document.getElementById("render").value;
-    var def = document.getElementById("defini").value;
-    return {ModelColor: mc, BackgroundColor1: bc1, BackgroundColor2: bc2, RenderMode: ren, Definition: def};
-}
-
-function readSTLfile(opt, canvasId){
-    var canvas = document.getElementById(canvasId);
-    var viewer = new JSC3D.Viewer(canvas);
-    viewer.setParameter('SceneUrl', opt.SceneUrl);
-    viewer.setParameter('InitRotationX', 0);
-    viewer.setParameter('InitRotationY', 0);
-    viewer.setParameter('InitRotationZ', 0);
-    viewer.setParameter('ModelColor', opt.ModelColor);
-    viewer.setParameter('BackgroundColor1', opt.BackgroundColor1);
-    viewer.setParameter('BackgroundColor2', opt.BackgroundColor2);
-    viewer.setParameter('RenderMode', opt.RenderMode);
-    viewer.setParameter('Definition', opt.Definition);
-    viewer.init();
-    viewer.update();
-    viewers.push(viewer); // 保存 viewer 實例
-}
-
-function changeOption(strOpt,strValue){
-    console.log("change " + strOpt + " to " + strValue);
-    viewers.forEach(viewer => {
-        viewer.setParameter(strOpt, strValue);
-        viewer.init();
-        viewer.update();
-    });
-}
-
-function openByUrl(){
-    var url = document.getElementById("url").value;
-    var opt = getOptions();
-    opt.SceneUrl = url;
-    // 可以添加更多的 STL URL
-    readSTLfile(opt, 'cv1'); // 為每個 canvas 調用
-    readSTLfile(opt, 'cv2'); // 第二個 canvas
-}
-
-function openByGet(){
-    var urls = [
-        "https://s104.cycu.org/~41223235/98.stl",
-        "https://s104.cycu.org/~41223235/99.stl"
-    ];
-    var opt = getOptions();
-    urls.forEach((url, index) => {
-        opt.SceneUrl = url;
-        readSTLfile(opt, 'cv' + (index + 1)); // 動態生成 canvas ID
-    });
-}
-
-openByGet();
-</script>
-<p></p>
 <h2>w11_ch</h2>
 <p><span>零件分配</span></p>
 <p>組員 : 吳承睿41223215  林堃燁41223226  陳脩升41223235</p>
@@ -488,12 +486,14 @@ function openByGet(){
 
 openByGet();
 </script>
+<h2>w14</h2>
 <h2>w15</h2>
 <p>障礙物建設設計彈珠檯 </p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="225" referrerpolicy="strict-origin-when-cross-origin" src="//www.youtube.com/embed/mIoWto_E09M" title="國立虎尾科技大學機械設計工程系 - 電腦輔助設計與實習_w15_彈珠檯障礙物建設過程 : 41223235" width="400"></iframe></p>
 <p><span>基礎功能建設影片</span></p>
 <p><a href="https://mdecad2024.github.io/hw-41223226-0/content/w15.html"><span>41223226</span></a></p>
-<p></p><h1>HW2</h1>
+<p></p>
+<h1>HW2</h1>
 <p>Homework 2 (10%):</p>
 <p style="padding-left: 30px;">利用 Solvespace 與 NX 建立 <a href="https://mde.tw/cad2024/content/BonW.html">Balance on Wheels</a> 組立件</p>
 <hr/>
